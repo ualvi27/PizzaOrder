@@ -11,11 +11,11 @@ import json
 load_dotenv()
 
 # Set your API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["openai"]
 
 # Email details
-EMAIL_ADDRESS = os.getenv("My_Email")
-EMAIL_PASSWORD = os.getenv("My_Password")
+EMAIL_ADDRESS = st.secrets["myemail"]
+EMAIL_PASSWORD = st.secrets["mypassword"]
 RECIPIENT_EMAIL = os.getenv("Online_Order")
 
 # Menu items with categories, size options, and images
@@ -25,25 +25,25 @@ menu = {
             "Small": 7.00,
             "Medium": 10.00,
             "Large": 12.95,
-            "image": "C:\\Users\\dr_um\\Firebase\\Pizza\\peproni1.jpg"
+            "image": "images/peproni1.jpg"
         },
         "Cheese Pizza": {
             "Small": 6.50,
             "Medium": 9.25,
             "Large": 10.95,
-            "image": "C:\\Users\\dr_um\\Firebase\\Pizza\\cheeze.jpg"
+            "image": "images/cheeze.jpg"
         },
         "Eggplant Pizza": {
             "Small": 6.75,
             "Medium": 9.75,
             "Large": 11.95,
-            "image": "C:\\Users\\dr_um\\Firebase\\Pizza\\eggplant.jpg"
+            "image": "images/eggplant.jpg"
         },
         "Chicken Tikka Pizza": {
             "Small": 6.00,
             "Medium": 8.00,
             "Large": 10.10,
-            "image": "C:\\Users\\dr_um\\Firebase\\Pizza\\chktika.jpg"
+            "image": "images/chktika.jpg"
         }
     },
     "Additional Items": {
@@ -145,7 +145,7 @@ if "order" not in st.session_state:
     st.session_state.order_number = 1
 
 # Sidebar with logo and category selection
-logo_path = "C:\\Users\\dr_um\\Firebase\\Pizza\\PizzaShop.jpg"
+logo_path = "images/PizzaShop.jpg"
 if os.path.exists(logo_path):
     st.sidebar.image(logo_path, use_column_width=True)
 st.sidebar.header("Menu")
