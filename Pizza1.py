@@ -11,12 +11,14 @@ import json
 load_dotenv()
 
 # Set your API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["openai"]
 # Email details
-EMAIL_ADDRESS = os.getenv("My_Email")
-EMAIL_PASSWORD = os.getenv("My_Password")
+EMAIL_ADDRESS = st.secrets["myemail"]
+EMAIL_PASSWORD = st.secrets["mypassword"]
 RECIPIENT_EMAIL = os.getenv("Online_Order")
+
 
 # Menu items with categories, size options, and images
 menu = {
