@@ -11,11 +11,11 @@ import json
 load_dotenv()
 
 # Set your API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["openai"]
 
 # Email details
-EMAIL_ADDRESS = os.getenv("My_Email")
-EMAIL_PASSWORD = os.getenv("My_Password")
+EMAIL_ADDRESS = st.secrets["myemail"]
+EMAIL_PASSWORD = st.secrets["mypassword"]
 RECIPIENT_EMAIL = os.getenv("Online_Order")
 
 # Menu items with categories, size options, and images
@@ -90,7 +90,6 @@ menu = {
     }
 }
 
-
 # Function to send email
 def send_email(order_number, order_details, customer_email):
     msg = MIMEMultipart()
@@ -122,7 +121,6 @@ def send_email(order_number, order_details, customer_email):
     except Exception as e:
         return f"Failed to send email: {e}"
 
-
 # Function to save order details to a JSON file
 def save_order_to_file(order_number, customer_name, customer_email, order_details):
     order_data = {
@@ -134,7 +132,6 @@ def save_order_to_file(order_number, customer_name, customer_email, order_detail
     }
     with open(f"order_{order_number}.json", "w") as f:
         json.dump(order_data, f, indent=4)
-
 
 # Streamlit GUI setup
 st.title("Welcome to Pizza Shop")
